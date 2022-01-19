@@ -1,3 +1,14 @@
+<?php
+
+    session_start();
+
+    if($_SESSION["Login"] != "YES"){
+        header("Location: ../../index.php");
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Class</title>
+    <link rel="icon" href="../../logo/logo-rasmi-ump-logo-sahaja.png" type="image/x-icon">
     <link rel="stylesheet" href="./styleSheet/userClass.css">
     <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -54,9 +66,9 @@
         <a href="../../calendar_view/index.php" style="text-decoration: none;">Home</a>
         <a href="../broadcast/index.php" style="text-decoration: none;">Broadcast</a>
         <a href="../viewProgress/index.php" style="text-decoration: none;">Progress</a>
-        <a href="../Views/report.html" style="text-decoration: none;">Report</a>
-        <a href="#UserName" id="username" style="text-decoration: none;">Username</a>
-        <img src="../../logo/user_logo.png" alt="User Logo" id="userlogo">
+        <a href="../report/index.php" style="text-decoration: none;">Report</a>
+        <a href="../../logout.php" id="username" style="text-decoration: none;">Logout</a>
+        <a href="../Profile/index.php" style="float: right; margin-top:-15px; margin-bottom:-15px"><img src="../../logo/user_logo.png" alt="User Logo" id="userlogo"></a>
     </div>
     <hr>
 
@@ -65,7 +77,7 @@
 
     <br><br>
 
-    <form action="index.php" method="POST" name="class_form" id="insert_data">
+    <form action="content.php" method="POST" name="class_form" id="insert_data">
         <center>
             <label for="className">Class Name: </label>
             <input type="text" id="className" name="className" style="width: 80%;">
@@ -75,18 +87,19 @@
             <label for="faculty" style="margin-right: 30px;">Faculty: </label>
             <select name="faculty" id="faculty" name="faculty" style="width: 80%;">
                 <option value="" hidden>-Select Faculty-</option>
-                <option value="FKOM">Faculty of Computer</option>
-                <option value="FET">Faculty of Engineering Technology</option>
-                <option value="FIST">Faculty of Industrial Sciences and Technology</option>
-                <option value="FEEET">Faculty of Electrical and Electronic Engineering Technology</option>
-                <option value="FCET">Faculty of Civil Engineering Technology</option>
-                <option value="FIM">Faculty of Industrial Management</option>
-                <option value="FCPET">Faculty of Chemical and Process Engineering Technology</option>
+                <option value="Faculty of Computer">Faculty of Computer</option>
+                <option value="Faculty of Engineering Technology">Faculty of Engineering Technology</option>
+                <option value="Faculty of Industrial Sciences and Technology">Faculty of Industrial Sciences and Technology</option>
+                <option value="Faculty of Electrical and Electronic Engineering Technology">Faculty of Electrical and Electronic Engineering Technology</option>
+                <option value="Faculty of Civil Engineering Technology">Faculty of Civil Engineering Technology</option>
+                <option value="Faculty of Industrial Management">Faculty of Industrial Management</option>
+                <option value="Faculty of Chemical and Process Engineering Technology">Faculty of Chemical and Process Engineering Technology</option>
             </select>
         </center>
 
         <br>
 
+        <fieldset class="supervisor">
         <center style="margin-right: 65%;">
             <label for="userType">User Type: </label>
             <label for="typeSuper" style="font-size:xx-large;">Supervisor</label>
@@ -108,9 +121,9 @@
                         <?php
                             $i=0;
                             while($row = mysqli_fetch_assoc($result)){
-                                $super_name = $row["name"];
+                                $supervisor = $row["name"];
                         ?>
-                        <option value="<?php echo $super_name; ?>"><?php echo $super_name; ?></option>
+                        <option value="<?php echo $supervisor; ?>"><?php echo $supervisor; ?></option>
                         <?php
                             $i++;
                             }
@@ -122,20 +135,28 @@
                 ?>
                 <div class="col-xs-2">
                     <button type="button" id="undo_redo_undo" class="btn btn-primary btn-block">undo</button>
-                    <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-forward"></i></button>
                     <button type="button" id="undo_redo_rightSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
                     <button type="button" id="undo_redo_leftSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                    <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-backward"></i></button>
                     <button type="button" id="undo_redo_redo" class="btn btn-warning btn-block">redo</button>
                 </div>
                 <div class="col-xs-5">
-                    <select name="to" id="undo_redo_to" class="form-assignSuper" size="11" multiple="multiple" style="width: 100%;"></select>
+                    <select name="supervisor[]" id="undo_redo_to" class="form-assignSuper" size="11" multiple="multiple" style="width: 100%;">
+                        <optgroup label="New Class" style="font-style: italic; font-size:larger; opacity:0.5"></optgroup>
+
+                        <?php
+                            /*extract( $_POST );
+                            $query = "INSERT INTO userclass (supervisor) VALUES('$supervisor')";
+                        */?>
+                    </select>
                 </div>
             </div>
         </div>
 
+        </fieldset>
+
         <br><br>
 
+        <fieldset class="student">
         <center style="margin-right: 68%;">
             <label for="userType">User Type: </label>
             <label for="typeStd" style="font-size:xx-large;">Student</label>
@@ -155,9 +176,9 @@
                         <?php
                             $i=0;
                             while($row = mysqli_fetch_assoc($result)){
-                                $std_name = $row["name"];
+                                $student = $row["name"];
                         ?>
-                        <option value="<?php echo $std_name; ?>"><?php echo $std_name; ?></option>
+                        <option value="<?php echo $student; ?>"><?php echo $student; ?></option>
                         <?php
                             $i++;
                             }
@@ -169,20 +190,22 @@
                 ?>
                 <div class="col-xs-2">
                     <button type="button" id="std_undo_redo_undo" class="btn btn-primary btn-block">undo</button>
-                    <button type="button" id="std_undo_redo_rightAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-forward"></i></button>
                     <button type="button" id="std_undo_redo_rightSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
                     <button type="button" id="std_undo_redo_leftSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                    <button type="button" id="std_undo_redo_leftAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-backward"></i></button>
                     <button type="button" id="std_undo_redo_redo" class="btn btn-warning btn-block">redo</button>
                 </div>
                 <div class="col-xs-5">
-                    <select name="to" id="std_undo_redo_to" class="form-assignStd" size="13" multiple="multiple" style="width: 100%;"></select>
+                    <select name="student[]" id="std_undo_redo_to" class="form-assignStd" size="13" multiple="multiple" style="width: 100%;">
+                        <optgroup label="New Class" style="font-style: italic; font-size:larger; opacity:0.5"></optgroup>
+                    </select>
                 </div>
             </div>
         </div>
+        </fieldset>
 
         <br><br>
 
+        <fieldset class="evaluator">
         <center style="margin-right: 68%;">
             <label for="userType">User Type: </label>
             <label for="typeEvaluator" style="font-size:xx-large;">Evaluator</label>
@@ -202,9 +225,9 @@
                         <?php
                             $i=0;
                             while($row = mysqli_fetch_assoc($result)){
-                                $eva_name = $row["name"];
+                                $evaluator = $row["name"];
                         ?>
-                        <option value="<?php echo $eva_name; ?>"><?php echo $eva_name; ?></option>
+                        <option value="<?php echo $evaluator; ?>"><?php echo $evaluator; ?></option>
                         <?php
                             $i++;
                             }
@@ -216,17 +239,18 @@
                 ?>
                 <div class="col-xs-2">
                     <button type="button" id="eva_undo_redo_undo" class="btn btn-primary btn-block">undo</button>
-                    <button type="button" id="eva_undo_redo_rightAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-forward"></i></button>
                     <button type="button" id="eva_undo_redo_rightSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
                     <button type="button" id="eva_undo_redo_leftSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
-                    <button type="button" id="eva_undo_redo_leftAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-backward"></i></button>
                     <button type="button" id="eva_undo_redo_redo" class="btn btn-warning btn-block">redo</button>
                 </div>
                 <div class="col-xs-5">
-                    <select name="to" id="eva_undo_redo_to" class="form-assignStd" size="13" multiple="multiple" style="width: 100%;"></select>
+                    <select name="evaluator[]" id="eva_undo_redo_to" class="form-assignEva" size="13" multiple="multiple" style="width: 100%;">
+                        <optgroup label="New Class" style="font-style: italic; font-size:larger; opacity:0.5"></optgroup>
+                    </select>
                 </div>
             </div>
         </div>
+        </fieldset>
 
         <script>
             $(document).ready(function() {

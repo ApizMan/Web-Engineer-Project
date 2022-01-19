@@ -1,3 +1,13 @@
+<?php
+
+    session_start();
+
+    if($_SESSION["Login"] != "YES"){
+        header("Location: ../../index.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Broadcast UMP</title>
+    <link rel="icon" href="../../logo/logo-rasmi-ump-logo-sahaja.png" type="image/x-icon">
     <link rel="stylesheet" href="./styleSheet/broadcastStyle.css">
     <script language="javascript" src="index.js" type="text/javascript"></script>
     <script>
@@ -90,9 +101,9 @@
         <a href="../../calendar_view/index.php">Home</a>
         <a href="../classesUser/index.php">User Class</a>
         <a href="../viewProgress/index.php">Progress</a>
-        <a href="../Views/report.html">Report</a>
-        <a href="#UserName" id="username">Username</a>
-        <img src="../../logo/user_logo.png" alt="User Logo" id="userlogo">
+        <a href="../report/index.php">Report</a>
+        <a href="../../logout.php" id="username">Logout</a>
+        <a href="../Profile/index.php" style="float: right; margin-top:-15px; margin-bottom:-15px"><img src="../../logo/user_logo.png" alt="User Logo" id="userlogo"></a>
     </div>
     <hr>
 

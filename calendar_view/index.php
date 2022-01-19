@@ -1,10 +1,22 @@
+<?php
+
+    session_start();
+
+    if($_SESSION["Login"] != "YES"){
+        header("Location: ../index.php");
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar View</title>
+    <title>Home | Calendar View</title>
+    <link rel="icon" href="../logo/logo-rasmi-ump-logo-sahaja.png" type="image/x-icon">
     <link rel="stylesheet" href="./styleSheet/index_style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
@@ -21,9 +33,9 @@
         <a href="../Views/classesUser/index.php" style="text-decoration: none;">User Class</a>
         <a href="../Views/broadcast/index.php" style="text-decoration: none;">Broadcast</a>
         <a href="../Views/viewProgress/index.php" style="text-decoration: none;">Progress</a>
-        <a href="../Views/report.html" style="text-decoration: none;">Report</a>
-        <a href="#UserName" id="username" style="text-decoration: none;">Username</a>
-        <img src="../logo/user_logo.png" alt="User Logo" id="userlogo">
+        <a href="../Views/report/index.php" style="text-decoration: none;">Report</a>
+        <a href="../logout.php" id="logout" style="text-decoration: none; float:right;">Logout</a>
+        <a href="../Views/Profile/index.php" style="float: right; margin-top:-15px; margin-bottom:-15px"><img src="../logo/user_logo.png" alt="User Logo" id="userlogo"></a>
     </div>
     <hr>
 

@@ -1,11 +1,24 @@
+<?php
+
+    session_start();
+
+    if($_SESSION["Login"] != "YES"){
+        header("Location: ../../index.php");
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Class</title>
+    <title>Dashboard | User Class</title>
+    <link rel="icon" href="../../logo/logo-rasmi-ump-logo-sahaja.png" type="image/x-icon">
     <link rel="stylesheet" href="./styleSheet/userClass.css">
+    <script language="javascript" src="index.js" type="text/javascript"></script>
     <style>
         table{
             border: 1px solid black;
@@ -49,6 +62,21 @@
             opacity: 0.9;
             float: right;
         }
+
+        #del{
+            width: 20%;
+            color: white;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color:green;
+            opacity: 0.9;
+        }
+        #del:hover{
+            background-color:red;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -59,9 +87,9 @@
         <a href="../../calendar_view/index.php" style="text-decoration: none;">Home</a>
         <a href="../broadcast/index.php" style="text-decoration: none;">Broadcast</a>
         <a href="../viewProgress/index.php" style="text-decoration: none;">Progress</a>
-        <a href="../Views/report.html" style="text-decoration: none;">Report</a>
-        <a href="#UserName" id="username" style="text-decoration: none;">Username</a>
-        <img src="../../logo/user_logo.png" alt="User Logo" id="userlogo">
+        <a href="../report/index.php" style="text-decoration: none;">Report</a>
+        <a href="../../logout.php" id="username" style="text-decoration: none;">Logout</a>
+        <a href="../Profile/index.php" style="float: right; margin-top:-15px; margin-bottom:-15px"><img src="../../logo/user_logo.png" alt="User Logo" id="userlogo"></a>
     </div>
     <hr>
 
@@ -92,15 +120,16 @@
                             <th>Student</th>
                             <th>Supervisor</th>
                             <th>Evaluator</th>
+                            <th>Faculty</th>
                             <th>Class Name</th>
                             <?php
                                 $i=0;
                                 while($row = mysqli_fetch_assoc($result)){
-                                    $student = $row["std_name"];
-                                    $supervisor = $row["super_name"];
-                                    $evaluator = $row["evaluator_name"];
+                                    $student = $row["student"];
+                                    $supervisor = $row["supervisor"];
+                                    $evaluator = $row["evaluator"];
                                     $faculty = $row["faculty"];
-                                    $className = $row["class_Name"];
+                                    $className = $row["className"];
                             ?>
                             <tr>
                                 <td style="text-align: center;"><input type="checkbox" name="userclass[]" value="<?php echo $row["id"]; ?>" ></td>
@@ -117,8 +146,8 @@
                             
                         </tr>
                         <tr class="head" style="background-color: transparent; border: none;">
-                            <td colspan="8" style="background-color: transparent; border: none;"><input id="update" type="button" name="Edit" value="Edit" onClick="setUpdateAction();" /> 
-				                                                                                <input id="del" type="button" name="delete" value="Delete"  onClick="setDeleteAction();" />
+                            <td colspan="8" style="background-color: transparent; border: none; text-align:center;">
+				                <input id="del" type="button" name="delete" value="Delete"  onClick="setDeleteAction();" />
                             </td>
                         </tr>
                     </table>

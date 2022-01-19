@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 15, 2021 at 02:41 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Host: 127.0.0.1:3307
+-- Generation Time: Jan 11, 2022 at 12:47 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -40,12 +39,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `start_event`, `end_event`) VALUES
-(6, 'F2F mid term test', '2021-12-08 12:00:00', '2021-12-08 17:00:00'),
-(7, 'Hanging out with friend', '2021-12-11 00:00:00', '2021-12-12 00:00:00'),
-(8, 'Meeting with SV', '2021-12-13 07:30:00', '2021-12-13 13:00:00'),
-(9, 'Going to KL ', '2021-12-17 00:00:00', '2021-12-17 09:30:00'),
-(10, 'Attend Career Event', '2021-12-19 11:00:00', '2021-12-19 17:30:00'),
-(11, 'F2F Class', '2021-12-16 09:30:00', '2021-12-16 15:00:00');
+(15, 'happy birthday!!', '2022-01-05 00:00:00', '2022-01-06 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -65,7 +59,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

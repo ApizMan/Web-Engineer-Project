@@ -4,7 +4,7 @@ include("dbase.php");
 
 //Dapatkan Tarikh Dan Masa Masuk
 extract( $_POST );
-$date = date("d-m-Y", time());
+$date = date("Y-m-d", time());
 $time = date("H:i:s", time());
 $query = "INSERT INTO student (date,time,category,title,announcement) VALUES('$date','$time','$category','$title','$announcement')";
 

@@ -1,10 +1,21 @@
+<?php
+
+    session_start();
+
+    if($_SESSION["Login"] != "YES"){
+        header("Location: ../../index.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progress Listing</title>
+    <title>View | Progress Listing</title>
+    <link rel="icon" href="../../logo/logo-rasmi-ump-logo-sahaja.png" type="image/x-icon">
     <link rel="stylesheet" href="../viewProgress/styleSheet/progressStyle.css">
     <style>
         table{
@@ -44,9 +55,9 @@
         <a href="../../calendar_view/index.php">Home</a>
         <a href="../broadcast/index.php">Broadcast</a>
         <a href="../classesUser/index.php">User Class</a>
-        <a href="../Views/report.html">Report</a>
-        <a href="#UserName" id="username">Username</a>
-        <img src="../../logo/user_logo.png" alt="User Logo" id="userlogo">
+        <a href="../report/index.php">Report</a>
+        <a href="../../logout.php" id="username">Logout</a>
+        <a href="../Profile/index.php" style="float: right; margin-top:-15px; margin-bottom:-15px"><img src="../../logo/user_logo.png" alt="User Logo" id="userlogo"></a>
     </div>
     <hr>
 
@@ -78,6 +89,8 @@
                         $supervisor = $row["name_super"];
                         $evaluator = $row["name_eva"];
                         $project_name = $row["project_name"];
+                        $comment_Super = $row["comment_Super"];
+                        $comment_Eva = $row["comment_Eva"];
                         $rating = $row["rating"];
                 ?>
                 <tr>
@@ -85,7 +98,16 @@
                     <td><?php echo $supervisor; ?></td>
                     <td><?php echo $evaluator; ?></td>
                     <td><?php echo $project_name; ?></td>
-                    <td></td>
+                    <td style="text-align: justify; padding:10px;">
+                        Comment Evaluator:
+                        <ul>
+                            <?php echo $comment_Eva; ?>
+                        </ul>
+                        Comment Supervisor:
+                        <ul>
+                            <?php echo $comment_Super; ?>
+                        </ul>
+                    </td>
                     <td><?php echo $rating; ?></td>
                 </tr>
                 <?php

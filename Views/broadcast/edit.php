@@ -1,20 +1,27 @@
 <?php
-require_once "dbase.php";
-if(isset($_POST["submit"]) && $_POST["submit"]!="") {
-$membersCount = count($_POST["title"]);
-for($i=0;$i<$membersCount;$i++) {
+    session_start();
 
-	$date = date("d-m-Y", time());
-	$time = date("H:i:s", time());
+    if($_SESSION["Login"] != "YES"){
+        header("Location: ../../index.php");
+    }
 
-	mysqli_query($conn, "UPDATE student SET date='" . $date . "', time='" . $time . "', category='" . $_POST["category"][$i] . "', title='" . $_POST["title"][$i] . "', announcement='" . $_POST["announcement"][$i] . "' WHERE id='" . $_POST["id"][$i] . "'");
-}
-header("Location:index.php");
+    require_once "dbase.php";
+    if(isset($_POST["submit"]) && $_POST["submit"]!="") {
+    $membersCount = count($_POST["title"]);
+    for($i=0;$i<$membersCount;$i++) {
+
+        $date = date("d-m-Y", time());
+        $time = date("H:i:s", time());
+
+        mysqli_query($conn, "UPDATE student SET date='" . $date . "', time='" . $time . "', category='" . $_POST["category"][$i] . "', title='" . $_POST["title"][$i] . "', announcement='" . $_POST["announcement"][$i] . "' WHERE id='" . $_POST["id"][$i] . "'");
+    }
+    header("Location:index.php");
 }
 ?>
 <html>
 	<head>
-    <title>Broadcast UMP</title>
+    <title>Edit | Broadcast UMP</title>
+    <link rel="icon" href="../../logo/logo-rasmi-ump-logo-sahaja.png" type="image/x-icon">
     <link rel="stylesheet" href="./styleSheet/broadcastStyle.css">
     </style>
 </head>
@@ -25,11 +32,12 @@ header("Location:index.php");
     <br>
     <div class="nav_top">
         <a href="../../calendar_view/index.php">Home</a>
+        <a href="../broadcast/index.php">Broadcast</a>
         <a href="../classesUser/index.php">User Class</a>
         <a href="../Views/view_progress.html">Progress</a>
-        <a href="../Views/report.html">Report</a>
-        <a href="#UserName" id="username">Username</a>
-        <img src="../../logo/user_logo.png" alt="User Logo" id="userlogo">
+        <a href="../report/index.php">Report</a>
+        <a href="../../logout.php" id="username">Logout</a>
+        <a href="../Profile/index.php" style="float: right; margin-top:-15px; margin-bottom:-15px"><img src="../../logo/user_logo.png" alt="User Logo" id="userlogo"></a>
     </div>
     <hr>
 
