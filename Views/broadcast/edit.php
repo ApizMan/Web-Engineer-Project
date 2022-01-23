@@ -95,5 +95,9 @@
             }
         </script>
     </form>
+
+    <?php
+        mysqli_close($conn);
+    ?>
 </body>
 </html>

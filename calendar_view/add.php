@@ -21,5 +21,5 @@ if(isset($_POST["title"]))
  );
 }
 
-
+$connect=null;
 ?>

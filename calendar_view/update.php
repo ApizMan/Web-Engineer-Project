@@ -22,4 +22,5 @@ if(isset($_POST["id"]))
  );
 }
 
+$connect=null;
 ?>

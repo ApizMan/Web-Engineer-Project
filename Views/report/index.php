@@ -56,6 +56,20 @@
             border: 1px solid black;
             background-color: lightyellow;
         }
+
+        .btn {
+        background-color: #00664d;
+        border: none;
+        color: white;
+        padding: 12px 30px;
+        cursor: pointer;
+        font-size: 20px;
+        }
+
+        /* Darker background on mouse-over */
+        .btn:hover {
+        background-color: #00b386;
+        }
    </style>
 </head>
 <body>
@@ -116,7 +130,7 @@
                 }
 
                 // Sort
-                $query_broadcast .= " ORDER BY date DESC";
+                $query_broadcast .= " ORDER BY date ASC";
                 $result = mysqli_query($con_broadcast,$query_broadcast);
 
                 // Check records found or not
@@ -180,7 +194,7 @@
                 }
 
                 // Sort
-                $query_class .= " ORDER BY date DESC";
+                $query_class .= " ORDER BY date ASC";
                 $result = mysqli_query($con_userclass,$query_class);
 
                 // Check records found or not
@@ -244,7 +258,7 @@
                 }
 
                 // Sort
-                $query_calendar .= " ORDER BY start_event DESC";
+                $query_calendar .= " ORDER BY start_event ASC";
                 $result = mysqli_query($con_calendar,$query_calendar);
 
                 // Check records found or not
@@ -272,10 +286,10 @@
         </div>
 
         <br>
-
+<!-- 
         <center>
-            <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=192.168.1.3:8005/coordinator/views/report/userView.php%2F&choe=UTF-8" title="Link to QR Report" />
-        </center>
+            <a href="../report/userView.php" download><button class="btn">Download</button></a>
+        </center> -->
     </fieldset>
 </body>
 </html>

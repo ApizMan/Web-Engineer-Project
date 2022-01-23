@@ -17,6 +17,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report</title>
     <link rel="icon" href="../../logo/logo-rasmi-ump-logo-sahaja.png" type="image/x-icon">
+    <script>
+        $(document).ready(function(){
+        $('.dateFilter').datepicker({
+            dateFormat: "yy-mm-dd"
+            });
+        });
+    </script>
     <style>
         table{
             border: 1px solid black;
@@ -48,14 +55,14 @@
     </style>
 </head>
 <body>
-    <center>
-        <a href="../report/index.php"><img class="logo" src="../../logo/logo.png" alt="UMP_Logo" style="width: 50%; height:50%;"></a>
-    </center>
+    <!-- <center>
+        <img class="logo" src="../../logo/logo.png" alt="UMP_Logo" style="width: 50%; height:50%;">
+    </center> -->
     <br>
     <br>
     <fieldset>
 
-        <h1>Student's View</h1>
+        <h1>Report Details</h1>
 
         <!-- Broadcast List -->
         <div style='height: 80%; overflow: auto;' >

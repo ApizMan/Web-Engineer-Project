@@ -42,3 +42,7 @@ if($query=mysqli_query($conn,"INSERT INTO userclass (date, time, supervisor, stu
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
 }
+
+mysqli_close($conn);
+
+?>

@@ -33,13 +33,17 @@
             background-color: black;
             margin-top: 50px;
             overflow: hidden;
-            transition: all 1s;
+            transition: all 0.5s;
         }
 
         .box:hover{
             width: 360px;
             height: 550px;
             border-radius: 5px;
+        }
+
+        .box:not(:hover){
+            transition: all 500000s;
         }
 
         image{
@@ -52,7 +56,7 @@
             padding: 3px;
             background-color: white;
             overflow: hidden;
-            transition: all 1s;
+            transition: all 0.5s;
         }
 
         .box:hover img{
@@ -61,13 +65,17 @@
             margin:20px 35% ;
         }
 
+        .box:not(:hover) img{
+            transition: all 500000s;
+        }
+
         /* hr{
             width:500px;
             line-height:20px;
             margin:10px 10px 10px 10px;
         } */
 
-        input[type="text"],input[type="email"],input[type="number"] {
+        input[type="text"],input[type="email"],input[type="number"],input[type="date"] {
             display: block;
             box-sizing: border-box;
             color: #33b998;;
@@ -88,7 +96,7 @@
             margin-top: 25px;
         }
             
-        input[type="text"]:focus,input[type="email"]:focus,input[type="number"]:focus {
+        input[type="text"]:focus,input[type="email"]:focus,input[type="number"], input[type="date"]:focus {
             border-bottom: 2px solid #33b998;;
             border-bottom-right-radius:20px;
             color: #33b998;;
@@ -171,16 +179,17 @@
 
             <div class="box" style="margin-top: -10px;">
 
-            <input type="file" id="file" name="image" id="upload" onclick="triggerClick()">
-            <img src="../../logo/images.jpg" width="100%" height="100%" id="image" onchange="displayImage(this)">
-            <label for="file" id="upload">EDIT PICTURE</label>
+            <!-- <input type="file" id="file" name="image" id="upload" onclick="triggerClick()"> -->
+            <img src="../../logo/user_logo.png" width="100%" height="100%" id="image">
+            <!-- <label for="file" id="upload">EDIT PICTURE</label> -->
 
 
-            <input type="text" placeholder="Name" name="name" value="">
-            <input type="Email" placeholder="Email ID" name="email" >
-            <input type="number" placeholder="Phone Number" name="phone_num" >
-            <input type="text" placeholder="Date of Birth" name="dob">
+            <input type="text" placeholder="Name" name="name" value="" required>
+            <input type="Email" placeholder="Email ID" name="email" required>
+            <input type="text" placeholder="Phone Number" name="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required>
+            <input type="date" placeholder="Date of Birth" name="dob" required>
             <input type ="hidden" name="id" value="<?php echo $id; ?>">
+            <br>
 
             <button type="reset" style="float: left;margin: 10px 0 0 18.2%;">CANCEL</button>
 
