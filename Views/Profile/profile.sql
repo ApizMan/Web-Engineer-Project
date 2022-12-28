@@ -2,8 +2,8 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Generation Time: Jan 11, 2022 at 12:46 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jan 24, 2022 at 12:25 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -41,7 +41,7 @@ CREATE TABLE `detail` (
 --
 
 INSERT INTO `detail` (`id`, `name`, `email`, `phone_num`, `dob`, `gender`) VALUES
-(1, 'Nafiz Mansor', 'nafizmansor@gmail.com', 134699309, '05-01-2000', 'Male');
+(1, 'Nafiz', 'nafizmansor25@gmail.com', 134699309, '2000-01-05', 'Male');
 
 --
 -- Indexes for dumped tables
